@@ -2,8 +2,9 @@ import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect } from "react";
 import { ArrowUpRight, Download } from "lucide-react";
 import { openSubmitDialog } from "./SubmitCharityModal";
-import collageFinalLeft from "@/assets/collage-final-left.png";
-import collageFinalRight from "@/assets/collage-final-right.png";
+import waterImage from "@/assets/cause-water.jpg";
+import foodImage from "@/assets/cause-food.jpg";
+import wildlifeImage from "@/assets/cause-wildlife.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -12,10 +13,10 @@ export function FinalCta() {
   const mouseY = useMotionValue(0);
   const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 });
   const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 });
-  const leftX = useTransform(smoothX, [-0.5, 0.5], [-22, 22]);
-  const leftY = useTransform(smoothY, [-0.5, 0.5], [-14, 14]);
-  const rightX = useTransform(smoothX, [-0.5, 0.5], [18, -18]);
-  const rightY = useTransform(smoothY, [-0.5, 0.5], [12, -12]);
+  const leftX = useTransform(smoothX, [-0.5, 0.5], [-14, 14]);
+  const leftY = useTransform(smoothY, [-0.5, 0.5], [-9, 9]);
+  const rightX = useTransform(smoothX, [-0.5, 0.5], [12, -12]);
+  const rightY = useTransform(smoothY, [-0.5, 0.5], [8, -8]);
 
   useEffect(() => {
     const onMove = (event: PointerEvent) => {
@@ -49,31 +50,23 @@ export function FinalCta() {
         style={{ maskImage: "linear-gradient(to bottom, black, transparent)", WebkitMaskImage: "linear-gradient(to bottom, black, transparent)" }}
       />
 
-      {/* side collages */}
-      <motion.img
-        src={collageFinalLeft}
-        alt=""
-        aria-hidden
-        style={{ x: leftX, y: leftY }}
-        initial={{ opacity: 0, x: -60, rotate: -4 }}
-        whileInView={{ opacity: 1, rotate: -2 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.1, ease }}
-        className="pointer-events-none absolute -left-[4vw] top-[4svh] z-20 h-auto w-[55vw] max-w-[240px] object-contain object-left-top mix-blend-multiply sm:left-[3vw] sm:top-[5svh] sm:w-[38vw] sm:max-w-[400px] lg:left-[4vw] lg:top-[6svh] lg:w-[30vw] lg:max-w-[560px]"
-      />
-      <motion.img
-        src={collageFinalRight}
-        alt=""
-        aria-hidden
-        style={{ x: rightX, y: rightY }}
-        initial={{ opacity: 0, x: 60, rotate: 4 }}
-        whileInView={{ opacity: 1, rotate: 2 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.1, ease }}
-        className="pointer-events-none absolute -right-[4vw] top-[4svh] z-20 h-auto w-[55vw] max-w-[240px] object-contain object-right-top mix-blend-multiply sm:right-[3vw] sm:top-[5svh] sm:w-[38vw] sm:max-w-[400px] lg:right-[4vw] lg:top-[6svh] lg:w-[30vw] lg:max-w-[560px]"
-      />
+      {/* Cropped documentary frames make this section distinct from the opening collages. */}
+      <motion.div style={{ x: leftX, y: leftY }} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1.1, ease }} className="pointer-events-none absolute left-[4vw] top-[10svh] z-20 hidden w-[22vw] max-w-[410px] lg:block">
+        <div className="aspect-[4/5] overflow-hidden border-[10px] border-paper shadow-2xl -rotate-3">
+          <img src={waterImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <p className="mt-3 font-stamp text-[0.62rem] uppercase tracking-[0.28em] text-ink/55">Clean water / every day</p>
+      </motion.div>
+      <motion.div style={{ x: rightX, y: rightY }} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1.1, ease }} className="pointer-events-none absolute right-[3vw] top-[8svh] z-20 hidden w-[25vw] max-w-[450px] lg:block">
+        <div className="aspect-[5/3] overflow-hidden border-[10px] border-paper shadow-2xl rotate-2">
+          <img src={foodImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <div className="ml-auto mt-8 aspect-square w-[58%] overflow-hidden border-[9px] border-paper shadow-2xl -rotate-2">
+          <img src={wildlifeImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+      </motion.div>
 
-      <div className="relative z-10 mx-auto mt-[50svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[17%]">
+      <div className="relative z-10 mx-auto mt-[28svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[15%] lg:mt-[12%]">
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}

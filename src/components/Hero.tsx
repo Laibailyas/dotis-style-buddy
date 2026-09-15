@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
-import { Apple, ArrowDown, ArrowUpRight, Download } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
 import { PartnerMarquee } from "./PartnerMarquee";
 import { InstallSun, SunShape } from "./InstallSun";
 import { openSubmitDialog } from "./SubmitCharityModal";
@@ -137,7 +137,11 @@ export function Hero() {
               <span title="Android" className="platform-icon">
                 <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current" aria-hidden><path d="M6 9h12v8a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2zM4 9.5a1.4 1.4 0 0 1 2.8 0v5a1.4 1.4 0 0 1-2.8 0zm13.2 0a1.4 1.4 0 0 1 2.8 0v5a1.4 1.4 0 0 1-2.8 0zM9 20h2v2.6a1.3 1.3 0 0 1-2.6 0V20zm4 0h2v2.6a1.3 1.3 0 0 1-2.6 0V20zM7.4 7.8A4.9 4.9 0 0 1 12 4.2a4.9 4.9 0 0 1 4.6 3.6zm2-4.9.9 1.4-.6.4-.9-1.4zm4.3 0 .6.4-.9 1.4-.6-.4z" /></svg>
               </span>
-              <span title="macOS" className="platform-icon"><Apple className="h-7 w-7 fill-current" /></span>
+              <span title="macOS" className="platform-icon" aria-label="macOS">
+                <svg viewBox="0 0 384 512" className="h-7 w-7 fill-current" aria-hidden>
+                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5 4 299.7 8.8 326.8 18.4 354c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-89-61.7-91.2zM260.7 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+              </span>
             </div>
           </motion.div>
 

@@ -22,12 +22,8 @@ const FAQS = [
     a: "Yes. Dotis works for people everywhere, with verified charities and projects across the world. You can choose a global cause or submit a charity in your own community for verification.",
   },
   {
-    q: "Where does the money actually go?",
-    a: "Everything shown on your Impact Dashboard is donated directly to the charity you chose. Our infrastructure, security and operating costs are covered separately from enterprise revenue.",
-  },
-  {
     q: "Can I see proof of the donations?",
-    a: "Yes. You can request proof of any donation at any time, including receipts, transfer records and confirmations from the charity itself. Full transparency is the point, not a feature we charge for.",
+    a: "Yes. Everything shown on your Impact Dashboard is donated directly to your chosen charity, while our operating costs are covered separately. You can request receipts, transfer records and confirmations from the charity at any time.",
   },
   {
     q: "Why isn't Dotis on the Google Play or Apple App Store?",

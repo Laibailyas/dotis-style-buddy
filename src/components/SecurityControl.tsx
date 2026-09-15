@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { Eye, Lock, Power, ShieldCheck, Wifi } from "lucide-react";
-import avastLogo from "../assets/security-logos/avast.webp";
-import kasperskyLogo from "../assets/security-logos/kaspersky.png";
-import mcafeeLogo from "../assets/security-logos/mcafee.png";
-import defenderLogo from "../assets/security-logos/microsoft-defender.png";
+import avastLogo from "../assets/security-logos/avast-grey.png";
+import kasperskyLogo from "../assets/security-logos/kaspersky-grey.png";
+import mcafeeLogo from "../assets/security-logos/mcafee-grey.png";
+import defenderLogo from "../assets/security-logos/microsoft-defender-grey.png";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -124,30 +124,30 @@ export function SecurityControl() {
         <p className="font-stamp text-[0.65rem] uppercase tracking-[0.35em] text-paper/55 sm:text-xs">
           Recognized as safe to use by
         </p>
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
+        <div className="mx-auto mt-7 grid max-w-4xl grid-cols-2 items-center gap-3 sm:grid-cols-4 sm:gap-5">
           <img
             src={avastLogo}
             alt="Avast"
             title="Avast"
-            className="h-7 w-auto object-contain opacity-45 grayscale transition-all duration-300 hover:opacity-80 hover:grayscale-0"
+            className="h-14 w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
           />
           <img
             src={kasperskyLogo}
             alt="Kaspersky"
             title="Kaspersky"
-            className="h-6 w-auto object-contain opacity-45 grayscale transition-all duration-300 hover:opacity-80 hover:grayscale-0"
+            className="h-14 w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
           />
           <img
             src={mcafeeLogo}
             alt="McAfee"
             title="McAfee"
-            className="h-8 w-auto object-contain opacity-45 grayscale transition-all duration-300 hover:opacity-80 hover:grayscale-0"
+            className="h-14 w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
           />
           <img
             src={defenderLogo}
             alt="Microsoft Defender"
             title="Microsoft Defender"
-            className="h-9 w-auto object-contain opacity-45 grayscale transition-all duration-300 hover:opacity-80 hover:grayscale-0"
+            className="h-14 w-full object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
           />
         </div>
         <p className="mx-auto mt-8 max-w-xl text-sm leading-relaxed text-paper/55 sm:text-base">

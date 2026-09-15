@@ -56,7 +56,7 @@ const CAUSES = [
     alt: "A community worker handing out supplies in a low-income neighbourhood",
     blurb: "Support families with essentials, shelter and the small grants that break the cycle.",
     charities: ["CARE", "Mercy Corps", "OXFAM"],
-    unit: "families supported",
+    unit: "those in need",
     perDollar: 0.9,
   },
 ] as const;

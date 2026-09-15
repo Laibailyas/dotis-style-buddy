@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, Globe2, Link2, ShieldCheck } from "lucide-react";
 import { openSubmitDialog } from "./SubmitCharityModal";
+import dotisMark from "@/assets/dotis-mark-orange.png";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -12,13 +13,13 @@ const POINTS = [
 
 export function SubmitBand() {
   return (
-    <section id="submit" className="relative bg-paper px-5 pb-16 pt-4 text-ink sm:px-6 sm:pb-24">
+    <section id="submit" className="relative bg-paper px-5 pb-16 pt-0 text-ink sm:px-6 sm:pb-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.85, ease }}
-        className="mx-auto grid max-w-[1800px] gap-8 rounded-[2rem] bg-ink px-6 py-10 text-paper sm:px-10 sm:py-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14"
+        className="mx-auto grid max-w-[1800px] gap-8 rounded-[2rem] bg-ink px-6 py-9 text-paper sm:px-10 sm:py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14"
       >
         <div>
           <span className="inline-block bg-flare px-5 py-2 font-stamp text-[0.6rem] uppercase tracking-[0.3em] text-paper">
@@ -50,6 +51,7 @@ export function SubmitBand() {
               className="rise-button group inline-flex items-center justify-center gap-2 rounded-full border border-paper/25 px-7 py-3.5 text-sm font-medium text-paper sm:text-base"
             >
               <span aria-hidden className="rise-fill rise-fill--paper" />
+              <img src={dotisMark} alt="" aria-hidden className="rise-label h-5 w-5 object-contain" />
               <span className="rise-label transition-colors duration-500 group-hover:text-ink">Install Dotis</span>
             </a>
           </div>
