@@ -66,7 +66,16 @@ export function FinalCta() {
         </div>
       </motion.div>
 
-      <div className="relative z-10 mx-auto mt-[28svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[15%] lg:mt-[12%]">
+      <motion.div initial={{ opacity: 0, y: -24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="pointer-events-none absolute inset-x-5 top-[7svh] z-20 grid grid-cols-[1.15fr_0.85fr] gap-3 lg:hidden">
+        <div className="aspect-[4/3] overflow-hidden border-[6px] border-paper shadow-xl -rotate-2">
+          <img src={waterImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <div className="mt-10 aspect-square overflow-hidden border-[6px] border-paper shadow-xl rotate-3">
+          <img src={foodImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+      </motion.div>
+
+      <div className="relative z-10 mx-auto mt-[34svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[20%] lg:mt-[12%]">
         <motion.span
           initial={{ opacity: 0, y: -10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +86,7 @@ export function FinalCta() {
           Ready when you are
         </motion.span>
 
-        <h2 className="mt-4 font-display text-[clamp(1.9rem,8.4vw,5.5rem)] uppercase leading-[0.95] text-paper sm:mt-6">
+        <h2 className="mt-4 font-display text-[clamp(1.9rem,8.4vw,5.5rem)] uppercase leading-[0.95] text-flare sm:mt-6">
           {["Start Giving", "Without Paying"].map((line, li) => (
             <span key={line} className="block overflow-hidden pb-1">
               <motion.span
@@ -98,7 +107,7 @@ export function FinalCta() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.25, ease }}
-          className="mx-auto mt-4 max-w-md px-2 text-sm leading-snug text-paper/90 sm:text-base md:text-lg"
+          className="mx-auto mt-4 max-w-md px-2 text-sm leading-snug text-ink/75 sm:text-base md:text-lg"
         >
           Free forever, off in one tap, and you support a verified charity of your choice without spending one cent.
         </motion.p>
@@ -123,11 +132,11 @@ export function FinalCta() {
             type="button"
             onClick={openSubmitDialog}
             data-cursor-hover
-            className="rise-button group inline-flex items-center gap-2 rounded-full border border-paper/30 px-5 py-3 text-sm font-medium text-paper sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
+            className="rise-button group inline-flex items-center gap-2 rounded-full border border-ink/30 px-5 py-3 text-sm font-medium text-ink sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
           >
             <span aria-hidden className="rise-fill rise-fill--paper" />
-            <span className="rise-label transition-colors duration-500 group-hover:text-ink">Submit your charity</span>
-            <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 group-hover:text-ink sm:h-5 sm:w-5" />
+            <span className="rise-label transition-colors duration-500">Submit your charity</span>
+            <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 sm:h-5 sm:w-5" />
           </button>
         </motion.div>
       </div>
