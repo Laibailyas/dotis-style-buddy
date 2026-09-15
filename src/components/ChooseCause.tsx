@@ -54,7 +54,7 @@ const CAUSES = [
     icon: HandCoins,
     image: povertyImage,
     alt: "A community worker handing out supplies in a low-income neighbourhood",
-    blurb: "Support families with essentials, shelter and the small grants that break the cycle.",
+    blurb: "Support those in need with essentials, shelter and the small grants that break the cycle.",
     charities: ["CARE", "Mercy Corps", "OXFAM"],
     unit: "those in need",
     perDollar: 0.9,
