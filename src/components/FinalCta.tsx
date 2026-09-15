@@ -1,0 +1,145 @@
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { useEffect } from "react";
+import { ArrowUpRight, Download } from "lucide-react";
+import { openSubmitDialog } from "./SubmitCharityModal";
+import waterImage from "@/assets/cause-water.jpg";
+import foodImage from "@/assets/cause-food.jpg";
+import wildlifeImage from "@/assets/cause-wildlife.jpg";
+
+const ease = [0.16, 1, 0.3, 1] as const;
+
+export function FinalCta() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 });
+  const leftX = useTransform(smoothX, [-0.5, 0.5], [-14, 14]);
+  const leftY = useTransform(smoothY, [-0.5, 0.5], [-9, 9]);
+  const rightX = useTransform(smoothX, [-0.5, 0.5], [12, -12]);
+  const rightY = useTransform(smoothY, [-0.5, 0.5], [8, -8]);
+
+  useEffect(() => {
+    const onMove = (event: PointerEvent) => {
+      mouseX.set(event.clientX / window.innerWidth - 0.5);
+      mouseY.set(event.clientY / window.innerHeight - 0.5);
+    };
+    window.addEventListener("pointermove", onMove);
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [mouseX, mouseY]);
+
+  return (
+    <section
+      id="install"
+      className="relative flex h-[100svh] min-h-[620px] flex-col items-center justify-center overflow-hidden bg-ink px-4 text-paper sm:px-6 md:h-screen"
+    >
+      {/* background image with soft top edge (no hard line into previous section) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center"
+        style={{ backgroundImage: "url(/last-sec-bg.png)" }}
+      />
+      {/* dissolve the image into the previous section's white at the top */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-64"
+        style={{ background: "linear-gradient(to bottom, var(--paper) 0%, color-mix(in oklch, var(--paper) 60%, transparent) 30%, transparent 100%)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-40 backdrop-blur-2xl"
+        style={{ maskImage: "linear-gradient(to bottom, black, transparent)", WebkitMaskImage: "linear-gradient(to bottom, black, transparent)" }}
+      />
+
+      {/* Cropped documentary frames make this section distinct from the opening collages. */}
+      <motion.div style={{ x: leftX, y: leftY }} initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1.1, ease }} className="pointer-events-none absolute left-[4vw] top-[10svh] z-20 hidden w-[22vw] max-w-[410px] lg:block">
+        <div className="aspect-[4/5] overflow-hidden border-[10px] border-paper shadow-2xl -rotate-3">
+          <img src={waterImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <p className="mt-3 font-stamp text-[0.62rem] uppercase tracking-[0.28em] text-ink/55">Clean water / every day</p>
+      </motion.div>
+      <motion.div style={{ x: rightX, y: rightY }} initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1.1, ease }} className="pointer-events-none absolute right-[3vw] top-[8svh] z-20 hidden w-[25vw] max-w-[450px] lg:block">
+        <div className="aspect-[5/3] overflow-hidden border-[10px] border-paper shadow-2xl rotate-2">
+          <img src={foodImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <div className="ml-auto mt-8 aspect-square w-[58%] overflow-hidden border-[9px] border-paper shadow-2xl -rotate-2">
+          <img src={wildlifeImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+      </motion.div>
+
+      <motion.div initial={{ opacity: 0, y: -24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, ease }} className="pointer-events-none absolute inset-x-5 top-[7svh] z-20 grid grid-cols-[1.15fr_0.85fr] gap-3 lg:hidden">
+        <div className="aspect-[4/3] overflow-hidden border-[6px] border-paper shadow-xl -rotate-2">
+          <img src={waterImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+        <div className="mt-10 aspect-square overflow-hidden border-[6px] border-paper shadow-xl rotate-3">
+          <img src={foodImage} alt="" aria-hidden className="h-full w-full object-cover grayscale" />
+        </div>
+      </motion.div>
+
+      <div className="relative z-10 mx-auto mt-[34svh] flex max-w-2xl flex-col items-center px-2 text-center sm:px-8 md:mt-[20%] lg:mt-[12%]">
+        <motion.span
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease }}
+          className="inline-block bg-ink px-5 py-2 font-stamp text-[0.65rem] font-medium uppercase tracking-[0.32em] text-paper sm:px-7 sm:py-2.5 sm:text-xs"
+        >
+          Ready when you are
+        </motion.span>
+
+        <h2 className="mt-4 font-display text-[clamp(1.9rem,8.4vw,5.5rem)] uppercase leading-[0.95] text-flare sm:mt-6">
+          {["Start Giving", "Without Paying"].map((line, li) => (
+            <span key={line} className="block overflow-hidden pb-1">
+              <motion.span
+                className="block"
+                initial={{ y: "110%", rotate: 3 }}
+                whileInView={{ y: 0, rotate: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.9, delay: li * 0.1, ease }}
+              >
+                {line}
+              </motion.span>
+            </span>
+          ))}
+        </h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.25, ease }}
+          className="mx-auto mt-4 max-w-md px-2 text-sm leading-snug text-ink/75 sm:text-base md:text-lg"
+        >
+          Free forever, off in one tap, and you support a verified charity of your choice without spending one cent.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.35, ease }}
+          className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+        >
+          <a
+            href="#causes"
+            data-cursor-hover
+            className="rise-button group inline-flex items-center gap-2 rounded-full border border-ink/15 bg-ink px-5 py-3 text-sm font-medium text-paper transition-transform duration-300 hover:scale-[1.03] sm:gap-3 sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
+          >
+            <span aria-hidden className="rise-fill rise-fill--leaf" />
+            <Download className="rise-label h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="rise-label">Install Dotis, it's free</span>
+          </a>
+          <button
+            type="button"
+            onClick={openSubmitDialog}
+            data-cursor-hover
+            className="rise-button group inline-flex items-center gap-2 rounded-full border border-ink/30 px-5 py-3 text-sm font-medium text-ink sm:px-8 sm:py-3.5 sm:text-base md:text-lg"
+          >
+            <span aria-hidden className="rise-fill rise-fill--paper" />
+            <span className="rise-label transition-colors duration-500">Submit your charity</span>
+            <ArrowUpRight className="rise-label h-4 w-4 transition-colors duration-500 sm:h-5 sm:w-5" />
+          </button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
